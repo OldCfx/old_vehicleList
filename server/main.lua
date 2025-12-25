@@ -1,5 +1,8 @@
+-- Logs discord
+local webHook = ""
+
 local function sendToDiscord(playerName, vehicleName, coords)
-    if Config.webhookURL == "" then return end
+    if webHook == "" then return end
     local embed = {
         {
             ["title"] = "old_vehicleList",
@@ -15,7 +18,7 @@ local function sendToDiscord(playerName, vehicleName, coords)
         }
     }
 
-    PerformHttpRequest(Config.webhookURL, function(err, text, headers) end, "POST", json.encode({
+    PerformHttpRequest(webHook, function(err, text, headers) end, "POST", json.encode({
         username = "old_vehicleList Logs",
         embeds = embed
     }), { ["Content-Type"] = "application/json" })
